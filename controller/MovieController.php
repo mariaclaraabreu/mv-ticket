@@ -9,9 +9,7 @@ $room=$_GET["room"];
 
 $controller = new MovieController;
 $controller->takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration,$room);
-
 class MovieController{
-
     public function takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration,$room){
         require_once '../model/Movie.php';
         $movie = new Movie($movieName,$movieDate, $movieTime, $movieDuration, $room);
@@ -80,8 +78,7 @@ class MovieController{
             }else{
                 return 0;
             }
-        }       
-            
+        }            
     }
 
     //Verificando se já existe filme cadastrado na mesma sala, dia e horário
