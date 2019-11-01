@@ -52,7 +52,9 @@ class MovieController{
             return false;
         }
     }
-    public function checkDateSevenDays($movieDate){ //nota: se for ano diferente, n cadastra do mesmo jeito (erro)
+
+
+    public function checkDateSevenDays($movieDate){ 
         $currentDateAndOneWeek = date('Y-m-d', strtotime('+1 week'));
         if($movieDate == $currentDateAndOneWeek){
             return -1;
@@ -60,9 +62,11 @@ class MovieController{
             return 0;
         }
     }
+
     public function takeDay($date){
         return $weekDay = date('l', strtotime($date));
     }
+
     public function checkAllowedTime($movieTime, $movieDuration){
         //Convertendo as horas de modo que possam ser subtraidas e somadas
         $startTimeMovies = "12:00";
