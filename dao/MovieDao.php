@@ -9,9 +9,7 @@ class MovieDao{
         $datasMovie = $movie->getMovieName()." | ".$movie->getMovieDuration()." | ".$movie->getMovieDate()." | ".$movie->getMovieTime()." | \n";
         fwrite($file, $datasMovie);
         fclose($file);
-        echo "cadastrou";
 
-        
     }
     public function searchMovieDao(string $movieName){
         
