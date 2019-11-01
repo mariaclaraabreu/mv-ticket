@@ -20,17 +20,24 @@ class MovieController{
     }
     public function saveMovieController(Movie $movie){
         $cont = new MovieController();
+        //$cont->checkRoomAvailability($movie->getRoom());
         $result = $cont->checkDateSevenDays($movie->getMovieDate());
         if($result == 0){
             $takeDayWeek = $cont->takeDay($movie->getMovieDate()); //verificando se é quinta
             if ($takeDayWeek == 'Thursday'){
                 $resultcheckAllowedTime = $cont->checkAllowedTime($movie->getMovieTime(), $movie->getMovieDuration());
                 if($resultcheckAllowedTime == 1){
-                    require_once '../dao/MovieDao.php';
-                    $movieDao = new MovieDao();
-                    $movieDao->SaveMovieDao($movie);                                                        
-                    echo "Filme cadastrado com sucesso!";
-                    return true;
+                    $resultcheckRoomAvailability = $cont->checkRoomAvailability($movie->getRoom(),$movie->getMovieTime(),$movie->getMovieDate());
+                    if($resultcheckRoomAvailability != 1){//verificando se ja não existe um filme cadastrado no mesmo horário, data e sala;
+                        require_once '../dao/MovieDao.php';
+                        $movieDao = new MovieDao();
+                        $movieDao->SaveMovieDao($movie);                                                        
+                        echo "Filme cadastrado com sucesso!";
+                        return true;
+                    }else{
+                        echo "Já existe um filme cadastrado neste horário, data e sala! Não foi possível cadastrar.";
+                    }
+                
                 }else{
                     echo "Não foi possível cadastrar o filme, pois o horário de exibição informado não está entre 12 e 22hrs.";
                     return false;
@@ -70,8 +77,32 @@ class MovieController{
                 return 0;
             }
         }       
-        
             
+    }
+
+    //Verificando se já existe filme cadastrado na mesma sala, dia e horário
+    public function checkRoomAvailability($room,$movieTime,$movieDate){
+        $file = file("../dao/datasMovie.txt");
+        foreach($file as $line){
+            $arrayLine = explode(' | ', $line);
+			foreach ($arrayLine as $value) {
+    			if($value == $movieDate){
+                    foreach ($arrayLine as $value){
+                        if($value == $movieTime){
+                            foreach ($arrayLine as $value){
+                                if($value == $room){
+                                    return 1;
+                                }else{
+                                    continue;
+                                }
+                                return 0;
+                            }
+                        }
+                    }
+                
+    			}
+			}
+        }
     }
 
 
