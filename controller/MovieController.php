@@ -5,15 +5,16 @@ $movieName=$_GET["movieName"];
 $movieDate=$_GET["movieDate"];
 $movieTime=$_GET["movieTime"];
 $movieDuration=$_GET["movieDuration"];
+$room=$_GET["room"];
 
 $controller = new MovieController;
-$controller->takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration);
+$controller->takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration,$room);
 
 class MovieController{
 
-    public function takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration){
+    public function takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration,$room){
         require_once '../model/Movie.php';
-        $movie = new Movie($movieName,$movieDate, $movieTime, $movieDuration);
+        $movie = new Movie($movieName,$movieDate, $movieTime, $movieDuration, $room);
         $cont = new MovieController();
         return $cont->saveMovieController($movie);
     }
@@ -63,10 +64,10 @@ class MovieController{
         $result =  date('H:i',(strtotime($endTimeMovies) - strtotime($movieTime)));
         if((date('H:i',(strtotime($movieTime) >= strtotime($startTimeMovies)))) && (date('H:i',(strtotime($movieTime) <= strtotime($endTimeMovies))))){
             if(date('H:i',(strtotime($result) <= strtotime($movieDuration)))){
-                return 0;
+                return 1;
     
             }else{
-                return 1;
+                return 0;
             }
         }       
         
