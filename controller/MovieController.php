@@ -9,15 +9,13 @@ $movieDuration=$_GET["movieDuration"];
 $controller = new MovieController;
 $controller->takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration);
 
-
-
 class MovieController{
 
     public function takeDatasMovieController($movieName,$movieDate,$movieTime,$movieDuration){
         require_once '../model/Movie.php';
         $movie = new Movie($movieName,$movieDate, $movieTime, $movieDuration);
         $cont = new MovieController();
-        $cont->saveMovieController($movie);
+        return $cont->saveMovieController($movie);
     }
     
     public function saveMovieController(Movie $movie){
@@ -30,17 +28,21 @@ class MovieController{
                 if($resultcheckAllowedTime == 1){
                     require_once '../dao/MovieDao.php';
                     $movieDao = new MovieDao();
-                    $movieDao->SaveMovieDao($movie);
+                    $movieDao->SaveMovieDao($movie);                                                        
+                    echo "Filme cadastrado com sucesso!";
+                    return true;
                 }else{
                     echo "Não foi possível cadastrar o filme, pois o horário de exibição informado não está entre 12 e 22hrs.";
-                }
-                
+                    return false;
+                } 
             }else{
                 echo "Não foi possível cadastrar o filme. O  dia informado é diferente de quinta-feira.";
+                return false;
             }
             
         }else{
             echo "Não foi possível cadastrar o filme. A data do filme inserida é 7 dias após a data atual";
+            return false;
         }
     }
 
@@ -69,21 +71,5 @@ class MovieController{
         }
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
 ?>
