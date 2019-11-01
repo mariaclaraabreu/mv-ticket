@@ -12,37 +12,37 @@ class TestMovieController extends UnitTestCase {
 
     function testComDataForaDaQuinta() {
         $controller = new MovieController;
-        $result = $controller->takeDatasMovieController('Goku', '2019-11-30', '17:00', 2);
+        $result = $controller->takeDatasMovieController('Goku', '2019-11-30', '17:00', '01:45', 1);
         $this->assertFalse($result);
     }
 
     function testComHorarioNaoPermitidoMais() {
         $controller = new MovieController;
-        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '23:00', 2);
+        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '23:00', '01:45', 1);
         $this->assertFalse($result);
     }
 
     function testComHorarioNaoPermitidoMenos() {
         $controller = new MovieController;
-        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '8:00', 2);
+        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '8:00', '01:45', 1);
         $this->assertFalse($result);
     }
 
     function testComDataAntesDeSeteDias() {
         $controller = new MovieController;
-        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '23:00', 2);
+        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '23:00', '01:45', 1);
         $this->assertFalse($result);
     }
 
     function testHorarioUltrapassandoPermitido() {
         $controller = new MovieController;
-        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '21:00', 3);
+        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '21:00', '02:45', 1);
         $this->assertFalse($result);
     }
 
     function testSucesso() {
         $controller = new MovieController;
-        $result = $controller->takeDatasMovieController('Goku', '2019-11-28', '19:00', 2);
+        $result = $controller->takeDatasMovieController('Goku', '2019-11-14', '18:00', '01:45', 1);
         $this->assertTrue($result);
     }
 
