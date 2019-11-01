@@ -8,11 +8,12 @@ class Movie{
     private $movieDuration;
     private $room;
     //Getters and Setters
-    function __construct($movieName, $movieDate, $movieTime, $movieDuration){
+    function __construct($movieName, $movieDate, $movieTime, $movieDuration, $room){
       $this->movieName=$movieName;
       $this->movieDate=$movieDate;
       $this->movieTime=$movieTime;
       $this->movieDuration=$movieDuration;
+      $this->room=$room;
 
     }
     public function getMovieName(){
