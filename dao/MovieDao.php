@@ -6,7 +6,7 @@ class MovieDao{
     public function saveMovieDao(Movie $movie){
         //database acess
         $file=fopen("../dao/datasMovie.txt", "a");
-        $datasMovie = $movie->getMovieName()." | ".$movie->getMovieDuration()." | ".$movie->getMovieDate()." | ".$movie->getMovieTime()." | \n";
+        $datasMovie = $movie->getMovieName()." | ".$movie->getMovieDuration()." | ".$movie->getMovieDate()." | ".$movie->getMovieTime()." | ".$movie->getRoom()." | "."\n";
         fwrite($file, $datasMovie);
         fclose($file);
 

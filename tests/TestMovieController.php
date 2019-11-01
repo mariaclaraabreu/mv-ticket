@@ -46,4 +46,10 @@ class TestMovieController extends UnitTestCase {
         $this->assertTrue($result);
     }
 
+    function testMesmaSalaMesmoHorario() {
+        $controller = new MovieController;
+        $result = $controller->takeDatasMovieController('Vingaores', '2019-11-14', '18:00', '01:45', 1);
+        $this->assertFalse($result);
+    }
+
 }
