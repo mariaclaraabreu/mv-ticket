@@ -13,8 +13,8 @@
             <input type="date" class="form-control" name="movieDate" id="InputMovieDate" aria-describedby="movieDate" placeholder="Movie date">
             <label for="InputMovieTime">Time</label>
             <input type="time" class="form-control" name="movieTime" id="InputMovieTime" aria-describedby="movieTime" placeholder="Movie time">
-            <label for="InputMovieDuration">Duration (in hours)</label>
-            <input type="text" class="form-control" name="movieDuration" id="InputMovieDuration" aria-describedby="movieDuration" placeholder="Ex.: 2">
+            <label for="InputMovieDuration">Duration</label>
+            <input type="time" class="form-control" name="movieDuration" id="InputMovieDuration" aria-describedby="movieDuration" placeholder="Ex.: 2">
             <label for="InputMovieDuration">Select a room</label>
             <select class="custom-select mr-sm-2" name="movieSelect" id="inlineFormCustomSelect">
               <option selected>Select...</option>
